@@ -1,0 +1,18 @@
+{
+  "name": "address-resolution",
+  "version": "1.0.0",
+  "description": "Resolve address to its primary name",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "ts-node src/index.ts",
+    "build": "tsc",
+    "publish": "tsc && npm publish"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@ethersproject/bytes": "^5.7.0",
+    "ethers": "6.9.0"
+  }
+}
