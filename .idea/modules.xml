@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/reverse-resolution.iml" filepath="$PROJECT_DIR$/.idea/reverse-resolution.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/address-resolution.iml" filepath="$PROJECT_DIR$/.idea/address-resolution.iml" />
     </modules>
   </component>
 </project>
