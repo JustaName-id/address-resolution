@@ -2,15 +2,30 @@
   "name": "address-resolution",
   "version": "1.0.0",
   "description": "Resolve address to its primary name",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "ts-node src/index.ts",
     "build": "tsc",
     "publish": "tsc && npm publish"
   },
-  "author": "",
+  "author": "JustaName",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JustaName-id/address-resolution"
+  },
+  "keywords": [
+    "ethereum",
+    "address",
+    "resolution",
+    "ens",
+    "off-chain"
+  ],
   "license": "ISC",
+  "files": [
+    "dist"
+  ],
   "dependencies": {
     "@ethersproject/bytes": "^5.7.0",
     "ethers": "6.9.0"

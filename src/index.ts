@@ -1,13 +1,21 @@
 import { ethers, ZeroAddress } from "ethers";
-import {getResolver, supportsInterface, onChainReverse, offChainReverse} from "./functions";
+import {
+  getResolver,
+  supportsInterface,
+  onChainReverse,
+  offChainReverse,
+} from "./functions";
 
-const reverseResolution = async (address: string, providerUrl: string): Promise<string | null> => {
+const reverseResolution = async (
+  address: string,
+  providerUrl: string
+): Promise<string | null> => {
   const provider = new ethers.JsonRpcProvider(providerUrl);
 
   const checksumAddress = ethers.getAddress(address);
 
   const nameHash = ethers.namehash(
-      checksumAddress.substring(2) + ".addr.reverse"
+    checksumAddress.substring(2) + ".addr.reverse"
   );
 
   const resolverAddress = await getResolver(nameHash, provider);
