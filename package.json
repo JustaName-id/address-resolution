@@ -1,6 +1,6 @@
 {
-  "name": "address-resolution",
-  "version": "1.0.0",
+  "name": "@justaname.id/address-resolution",
+  "version": "1.0.1",
   "description": "Resolve address to its primary name",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

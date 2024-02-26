@@ -6,7 +6,7 @@ import {
   offChainReverse,
 } from "./functions";
 
-const reverseResolution = async (
+const addressResolution = async (
   address: string,
   providerUrl: string
 ): Promise<string | null> => {
@@ -33,4 +33,4 @@ const reverseResolution = async (
   }
 };
 
-export { reverseResolution };
+export { addressResolution };
