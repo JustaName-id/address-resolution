@@ -1,7 +1,7 @@
 # Installation
 
 ```sh
-npm install @ensdomains/ensjs viem
+npm install @justaname.id/address-resolution
 ```
 
 # Getting Started
