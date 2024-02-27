@@ -1,54 +1,27 @@
 import { ethers } from "ethers";
 import { dnsName } from "../utils/dnsName";
-import { resolverSelector, nameSelector } from "../utils/abis";
-import { arrayify } from "@ethersproject/bytes";
+import { resolverAbi } from "../utils/abis";
 
 const offChainReverse = async (
-  nameHash: string,
+  node: string,
   resolverAddress: string,
   provider: ethers.Provider
 ): Promise<string> => {
-  const dnsEncodedName: string = await dnsName(nameHash);
+  const contract = new ethers.Contract(resolverAddress, resolverAbi, provider);
 
-  // Get method selector (first 4 bytes of the Keccak-256 hash of the function signature)
-  const resolverFunctionSelector: string = ethers
-    .keccak256(ethers.toUtf8Bytes(resolverSelector))
-    .slice(0, 10); // Take only first 4 bytes
-  const nameFunctionSelector: string = ethers
-    .keccak256(ethers.toUtf8Bytes(nameSelector))
-    .slice(0, 10); // Take only first 4 bytes
+  const abi = new ethers.Interface([
+    "function name(bytes32) view returns (string)",
+  ]);
 
-  const abiCoder: ethers.AbiCoder = new ethers.AbiCoder();
+  let request = abi.encodeFunctionData("name", [node]);
 
-  const encodedNameCallData: string = abiCoder.encode(["bytes32"], [nameHash]);
-
-  const nameFunctionData: string =
-    nameFunctionSelector + encodedNameCallData.slice(2);
-
-  const txData: string = abiCoder.encode(
-    ["bytes", "bytes"],
-    [arrayify(dnsEncodedName), arrayify(nameFunctionData)]
-  );
-
-  const finalTxData: string = resolverFunctionSelector + txData.slice(2);
-
-  const tx = {
-    to: resolverAddress,
-    data: finalTxData,
+  let response = await contract.resolve(dnsName(node), request, {
     enableCcipRead: true,
-  };
+  });
 
-  const response: string = await provider.call(tx);
+  let [primary] = abi.decodeFunctionResult("name", response);
 
-  const decodedData = abiCoder.decode(["string"], response);
-  const name = decodedData[0];
-
-  const cleanedName = name
-    .replace(/[\u200B-\u200D\uFEFF]/g, "") // Remove specific known non-visible characters
-    .replace(/[\x00-\x20\x7F-\xA0]/g, "") // Remove a broad range of non-printable/control characters
-    .trim(); // Lastly, trim for good measure
-
-  return cleanedName;
+  return primary;
 };
 
 export { offChainReverse };

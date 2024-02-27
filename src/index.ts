@@ -14,11 +14,11 @@ const addressResolution = async (
 
   const checksumAddress = ethers.getAddress(address);
 
-  const nameHash = ethers.namehash(
-    checksumAddress.substring(2) + ".addr.reverse"
-  );
+  const name = checksumAddress.substring(2) + ".addr.reverse";
 
-  const resolverAddress = await getResolver(nameHash, provider);
+  const node = ethers.namehash(name);
+
+  const resolverAddress = await getResolver(node, provider);
 
   if (resolverAddress === ZeroAddress) {
     return null;
@@ -27,9 +27,9 @@ const addressResolution = async (
   const interfaceSupported = await supportsInterface(resolverAddress, provider);
 
   if (!interfaceSupported) {
-    return onChainReverse(nameHash, resolverAddress, provider);
+    return onChainReverse(node, resolverAddress, provider);
   } else {
-    return offChainReverse(nameHash, resolverAddress, provider);
+    return offChainReverse(node, resolverAddress, provider);
   }
 };
 
