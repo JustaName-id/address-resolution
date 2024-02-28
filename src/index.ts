@@ -29,7 +29,7 @@ const addressResolution = async (
   if (!interfaceSupported) {
     return onChainReverse(node, resolverAddress, provider);
   } else {
-    return offChainReverse(node, resolverAddress, provider);
+    return offChainReverse(name, node, resolverAddress, provider);
   }
 };
 

@@ -1,8 +1,8 @@
 import { ethers } from "ethers";
-import { dnsName } from "../utils/dnsName";
 import { resolverAbi } from "../utils/abis";
 
 const offChainReverse = async (
+  name: string,
   node: string,
   resolverAddress: string,
   provider: ethers.Provider
@@ -15,7 +15,7 @@ const offChainReverse = async (
 
   let request = abi.encodeFunctionData("name", [node]);
 
-  let response = await contract.resolve(dnsName(node), request, {
+  let response = await contract.resolve(ethers.dnsEncode(name), request, {
     enableCcipRead: true,
   });
 
