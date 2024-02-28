@@ -1,6 +1,6 @@
 {
   "name": "@justaname.id/address-resolution",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Resolve address to its primary name",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -26,8 +26,7 @@
   "files": [
     "dist"
   ],
-  "dependencies": {
-    "@ethersproject/bytes": "^5.7.0",
+  "peerDependencies": {
     "ethers": "6.9.0"
   }
 }
