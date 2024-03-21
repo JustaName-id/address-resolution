@@ -24,7 +24,13 @@ const addressResolution = async (
     return null;
   }
 
-  const interfaceSupported = await supportsInterface(resolverAddress, provider);
+  let interfaceSupported = false;
+  try {
+    interfaceSupported = await supportsInterface(resolverAddress, provider);
+    console.log({ interfaceSupported });
+  } catch (error) {
+    console.error(`Error checking interface support: ${error}`);
+  }
 
   if (!interfaceSupported) {
     return onChainReverse(node, resolverAddress, provider);
