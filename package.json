@@ -1,7 +1,8 @@
 {
   "name": "@justaname.id/address-resolution",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Resolve address to its primary name",
+  "deprecated": "This package is no longer maintained and will not receive updates or security fixes. Do not use in new projects.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {

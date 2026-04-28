@@ -1,3 +1,11 @@
+# ⚠️ DEPRECATED — 2026-04-28
+
+> **This package is no longer maintained.** It will not receive updates,
+> bug fixes, or security patches. The repository has been archived.
+> Please do not use this package in new projects.
+
+---
+
 # Installation
 
 ```sh
